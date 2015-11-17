@@ -4,16 +4,16 @@
 #
 vmname=fuel
 vmdomain=lab.mirantis.com
-disksize=50
-vcpus=1
-ram=2097152
+disksize=60
+vcpus=2
+ram=4194304
 diskpath="/var/lib/libvirt/images/"
 cdpath="/opt/iso/MirantisOpenStack-6.1.iso"
 
 qemu-img create -f qcow2 ${diskpath}${vmname}.qcow2 ${disksize}G
 
 cat <<END >/root/${vmname}.xml
-<domain type='kvm' id='15'>
+<domain type='kvm'>
   <name>${vmname}</name>
   <memory unit='KiB'>${ram}</memory>
   <currentMemory unit='KiB'>${ram}</currentMemory>
@@ -66,7 +66,7 @@ cat <<END >/root/${vmname}.xml
     </console>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
-    <graphics type='vnc' port='5900' autoport='yes' listen='0.0.0.0'>
+    <graphics type='vnc' port='-1' autoport='yes' listen='0.0.0.0'>
       <listen type='address' address='0.0.0.0'/>
     </graphics>
     <video>
