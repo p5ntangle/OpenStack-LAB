@@ -1,0 +1,39 @@
+nodes:
+  instance1:
+    vcpus: 2
+    ram: 400
+    nics:
+      pxe:
+        network: ovs-network
+        port: pxe
+      trunk:
+        network: ovs-network
+        port: vlan-all
+    disks:
+      disk1:
+        size: 600
+        type: qcow2
+        target: vda
+      disk2:
+        size: 1600
+        type: qcow2
+        target: vdb
+  instance2:
+    vcpus: 2
+    ram: 400
+    nics:
+      pxe:
+        network: ovs-network
+        port: pxe
+      trunk:
+        network: ovs-network
+        port: vlan-all
+    disks:
+      disk1:
+        size: 600
+        type: qcow2
+        target: vda
+      disk2:
+        size: 1600
+        type: qcow2
+        target: vdb
