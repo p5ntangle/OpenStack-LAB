@@ -3,6 +3,7 @@ FROM ubuntu:14.04
 RUN apt-get update 
 RUN apt-get install -y openssh-server build-essential
 RUN apt-get install -y apache2 tftpd-hpa inetutils-inetd
+RUN apt-get install -y isc-dhcp-server python-ipaddr
 
 # set tftp server to start correctly
 RUN set -xe \
@@ -25,3 +26,4 @@ RUN set -xe \
 RUN wget -r -nH --cut-dirs 7 --no-parent -e robots=off --reject "index.html*" /var/lib/tftpboot  http://us.archive.ubuntu.com/ubuntu/dists/trusty/main/installer-amd64/current/images/netboot/ ; exit 0
 
 
+copy dhcpd_start.py /
