@@ -27,3 +27,5 @@ RUN wget -r -nH --cut-dirs 7 --no-parent -e robots=off --reject "index.html*" /v
 
 
 copy dhcpd_start.py /
+
+EXPOSE 69
