@@ -45,5 +45,6 @@ cat <<END >/tmp/ovs-network.xml
 </network>
 END
 virsh net-define /tmp/ovs-network.xml
-virsh net-start /tmp/ovs-network.xml
+virsh net-start ovs-network
+virsh net-autostart ovs-network
 #### network.xml ####
