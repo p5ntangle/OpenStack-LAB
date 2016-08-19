@@ -1,11 +1,12 @@
 #!/bin/bash
 
-# DHCP Server
-#docker run -d -p 67:67 -p 67:67/udp -p 68:68 -p 68:68/udp -t dhcpd python /dhcpd_start.py
-docker run -d --network=host -t som/dhcpd
+
+#create shared volume for boot
+docker volume create -d flocker --name boot-files -o size=2GB
 
 # tftp server
-docker run -d -p 69:69/udp -t som/tftpd
+docker run -d -p 69:69/udp -v boot-files:/netboot -t som/tftpd
 
-#apache server
-#docker run -d -p 80:80 -t -v /tmp:/var/lib/tftpboot pxeboot
+# DHCP Server
+docker run -d --network=host -v boot-files:/netboot -t som/dhcpd
+

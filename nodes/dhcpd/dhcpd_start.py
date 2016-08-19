@@ -30,14 +30,20 @@ set=ip.split(".")
 net="%s.%s.%s.0" %(set[0],set[1],set[2])
 range_s="%s.%s.%s.225" %(set[0],set[1],set[2])
 range_e="%s.%s.%s.235" %(set[0],set[1],set[2])
+router="%s.%s.%s.1" %(set[0],set[1],set[2])
 
 output = "\n\nsubnet %s netmask %s {\n \
   range %s %s; \n \
+  option routers %s; \n \
   filename \"pxelinux.0\"; \n \
-}\n" %(net,subnet,range_s,range_e)
+}\n" %(net,subnet,range_s,range_e,router)
 
 print output
 with open ("/etc/dhcp/dhcpd.conf","a") as myfile:
     myfile.write(output)
+
+
+# Build config file for boot
+
 
 call(["/usr/sbin/dhcpd", "-d"])

@@ -9,4 +9,4 @@ copy dhcpd_start.py /
 EXPOSE 67
 EXPOSE 68
 
-CMD python /dhcpd_start.py
+#CMD python /dhcpd_start.py
