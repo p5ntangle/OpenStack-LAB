@@ -55,9 +55,24 @@ This script will create the KVM networking config for you
 	#find and uncomment the following line
 	vnc_listen = "0.0.0.0"
 
+sed -i 's/^#vnc_listen = "0.0.0.0"/vnc_listen = "0.0.0.0"/' /etc/libvirt/qemu.conf
 
 
 10. Create new fuel VM # 
+# Create boot-net
+ovs-vsctl add-br bootnet br-trunk0 10 
+# Create virsh network
+# boot-net.xml
+<network connections='2'>
+  <name>boot-net</name>
+  <uuid>2ab60533-fe2d-489e-963d-cef9e41f407f</uuid>
+  <forward mode='bridge'/>
+  <bridge name='bootnet'/>
+  <virtualport type='openvswitch'/>
+</network>
+# end
+
+virsh net-create ./boot-net.xml
 
 
 11. Create containers

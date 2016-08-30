@@ -19,5 +19,6 @@ for each in $nodes; do
 	nodeip=`echo $each | cut -d\| -f5`
 
 	ssh $nodeip "virsh destroy ${vmname}"
-	ssh $nodeip "virsh start ${vmname}"
+	ssh $nodeip "virsh undefine ${vmname}"
+        ssh $nodeip "rm ${diskpath}${vmname}.qcow2"
 done

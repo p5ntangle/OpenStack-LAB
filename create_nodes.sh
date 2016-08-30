@@ -9,17 +9,7 @@ diskpath="/var/lib/libvirt/images/"
 vmdomain=cloudbuilderhq.co.za
 
 #vmname|disksize|vcpus|ram|nodeip
-nodes="
-fuel-control-1|50|2|2097152|192.168.0.200
-fuel-control-2|50|2|2097152|192.168.0.201
-fuel-control-3|50|2|2097152|192.168.0.202
-fuel-compute-1|50|8|8388608|192.168.0.201
-fuel-compute-2|50|8|8388608|192.168.0.201
-fuel-compute-3|50|8|8388608|192.168.0.202
-fuel-ceph-1|50|1|2097152|192.168.0.200
-fuel-ceph-2|50|1|2097152|192.168.0.201
-fuel-ceph-3|50|1|2097152|192.168.0.202
-"
+. $1
 
 for each in $nodes; do
 	vmname=`echo $each | cut -d\| -f1`
