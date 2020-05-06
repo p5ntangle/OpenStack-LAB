@@ -2,11 +2,11 @@
 
 
 #create shared volume for boot
-docker volume create -d flocker --name boot-files -o size=2GB
+#docker volume create -d flocker --name boot-files -o size=2GB
 
 # tftp server
-docker run -d -p 69:69/udp -v boot-files:/netboot -t som/tftpd
+docker run --name tftpd -d -p 69:69/udp -v /root/OpenStack-LAB/nodes/netboot:/netboot -t som/tftpd
 
 # DHCP Server
-docker run -d --network=host -v boot-files:/netboot -t som/dhcpd
+docker run --name dhcpd -d --network=host -v /root/OpenStack-LAB/nodes/netboot:/netboot -t som/dhcpd
 
