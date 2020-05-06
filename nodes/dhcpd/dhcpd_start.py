@@ -39,11 +39,11 @@ output = "\n\nsubnet %s netmask %s {\n \
 }\n" %(net,subnet,range_s,range_e,router)
 
 print output
-with open ("/etc/dhcp/dhcpd.conf","a") as myfile:
+with open ("/netboot/config/dhcpd.conf","a") as myfile:
     myfile.write(output)
 
 
 # Build config file for boot
 
 
-call(["/usr/sbin/dhcpd", "-d"])
+call(["/usr/sbin/dhcpd", "-cf", "/netboot/config/dhcpd.conf", "-d" , "-f"])
